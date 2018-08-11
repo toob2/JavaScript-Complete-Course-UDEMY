@@ -1038,7 +1038,7 @@ var Jim = {
          percentage = 0.2;
       }
       else if (this.bills >= 50 && this.bills < 200){
-         percentage = 0.2;
+         percentage = 0.15;
       }
       else {
          percentage = 0.1;
@@ -1054,7 +1054,9 @@ var Jim = {
 Jim.calcTip();
 console.log(Jim);
 
+// first time here you are using 2 x dot - BTW DOT IS AN OPERATOR AS WELL, ITS CALLED A MEMBER ACCESS with precedence of 19, the 2nd highest, and its' associativity is from left to right, thats why it works - so first this.bills is executed and replaced with the array and then bills.length is executed and we end up with the arrays' length. if we started with bills.length it wudnt work, because bills.length simply do not exist, we dont have any object called bills
 
+//also we can store the current bill value in a variabe to not repeat ourselves
 
 var Mark = {
    bills: [77, 375, 110, 45],
@@ -1081,32 +1083,22 @@ var Mark = {
 Mark.calcTip();
 console.log(Mark);
 
-
-function avgTipJim (){
+function avgTip (person) {
    var sum = 0;
-   for (var i = 0; i < Jim.tips.length; i++){
-      sum += Jim.tips[i];     
+   for (var i = 0; i < person.tips.length; i++){
+      sum += person.tips[i];
    }
-   return sum / Jim.tips.length;
-}
+   return sum/person.tips.length;
+   this.average = tips;
+};
 
-console.log(avgTipJim());
-
-function avgTipMark (){
-   var sum = 0;
-   for (var i = 0; i < Mark.tips.length; i++){
-      sum += Mark.tips[i];     
-   }
-   return sum / Mark.tips.length;
-}
-
-console.log(avgTipMark());
+console.log(avgTip(Jim), avgTip(Mark));
 
 
-if (avgTipJim() > avgTipMark()) {
+if (avgTip(Jim) > avgTip(Mark)) {
    console.log('Jim\'s family paid the highest average tip');
 }
-else if (avgTipJim() < avgTipMark()) {
+else if (avgTip(Jim) < avgTip(Mark)) {
    console.log('Mark\'s family paid the highest average tip');
 }
 else {
@@ -1114,12 +1106,7 @@ else {
 };
 
 
-
-
-
-
-
-
+console.clear();
 
 
 
